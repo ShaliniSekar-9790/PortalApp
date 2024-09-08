@@ -1,0 +1,38 @@
+.form-group {
+    margin-bottom: 55px;
+}
+
+.displayTitle {
+    text-align: start;
+    float: inline-start;
+    width: 50%
+} 
+
+.form-control {
+    width: 80%;
+}
+
+input , select, textarea {
+    border-color:  rgb(30, 114, 197);
+    border-radius: 5px;
+}   
+
+button {
+    margin-top: 35px;
+    margin-left: 20px;
+}
+
+.header {
+    margin-top: 40Px;
+    font-family: "Font Awesome 6 Free";
+    font-size: medium;
+}
+
+.categorydiv {
+    text-align:left;
+    margin-top:25px;
+.CategoryInput {
+  float: inline-start;
+  text-align:left;
+}
+}

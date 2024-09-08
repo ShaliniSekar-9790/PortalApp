@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="header mb-5">
+    <h5 class="title">{{title}}</h5>
+  </div>
+  <div class="body">
+    <form #newsForm="ngForm" [ngClass]="{ 'is-invalid': newsData.title.length == 0 || newsData.description.length ==0  ||newsData.category.categoryName.length ==0 }" (ngSubmit)="newsForm.form.valid && onSubmit(newsForm)">
+      <div class="form-group">
+        <label class="displayTitle">Title</label>
+        <input type="text" [value]="newsData.title" class="form-control" id="title" [(ngModel)]="newsData.title" [ngModelOptions]="{standalone: true}" 
+         [ngClass]="{ 'is-invalid': newsData.title.length == 0}" required> 
+      </div>
+      <div class="form-group">
+        <label class="displayTitle">Description</label>
+        <textarea class="form-control" rows="3" id="description" [(ngModel)]="newsData.description" 
+        [ngModelOptions]="{standalone: true}" [ngClass]="{'is-invalid': newsData.description.length == 0}" required>
+      </textarea>
+        </div>
+      <div class="form-group">
+        <label class="displayTitle">Category</label>
+        <select class="form-control" id="Category" #categoryvalue (change)="onOptionsSelected(categoryvalue.value)"  [ngClass]="{ 'is-invalid': newsData.category.categoryName == entercategory}">
+          <option value="Entercategory" [selected]="newsData.category.categoryName===entercategory">Enter the category value</option>
+          <option *ngFor="let category of categoriesData" [selected]="category.categoryName===newsData.category.categoryName" [ngValue]="category.categoryName">
+            {{ category.categoryName }}
+          </option>
+        </select> 
+        <div class="categorydiv" *ngIf="newsData.category.categoryName === entercategory">
+          <input type="text" 
+              id="CategoryInput" 
+              placeholder="Type Category Name"  [(ngModel)]="customcategory"  [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+      <div class="d-flex-row float-end">
+      <button type="button" class="btn btn-outline-secondary" (click)="onClose($event)">Cancel</button>
+      <button type="submit" class="btn btn-success" [disabled]="newsData.title.length == 0 || newsData.description.length ==0  ||newsData.category.categoryName.length ==0">Save</button>
+      </div>
+    </form>
+    <app-modal-dialog>
+    </app-modal-dialog>
+  </div>
+</div>

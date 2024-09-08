@@ -1,0 +1,100 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\91979\\Desktop\\NewPortalWebapp\\NewPortalWebAPI\\NewsPortal-Test\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F17FBAAD-E550-4BB3-8491-FF648895D87F}|..\\NewPortalWebAPI\\NewPortalWebAPI.csproj|c:\\users\\91979\\desktop\\newportalwebapp\\newportalwebapi\\newportalwebapi\\service\\newsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F17FBAAD-E550-4BB3-8491-FF648895D87F}|..\\NewPortalWebAPI\\NewPortalWebAPI.csproj|c:\\users\\91979\\desktop\\newportalwebapp\\newportalwebapi\\newportalwebapi\\model\\request\\paginationfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F17FBAAD-E550-4BB3-8491-FF648895D87F}|..\\NewPortalWebAPI\\NewPortalWebAPI.csproj|c:\\users\\91979\\desktop\\newportalwebapp\\newportalwebapi\\newportalwebapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F17FBAAD-E550-4BB3-8491-FF648895D87F}|..\\NewPortalWebAPI\\NewPortalWebAPI.csproj|c:\\users\\91979\\desktop\\newportalwebapp\\newportalwebapi\\newportalwebapi\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F17FBAAD-E550-4BB3-8491-FF648895D87F}|..\\NewPortalWebAPI\\NewPortalWebAPI.csproj|c:\\users\\91979\\desktop\\newportalwebapp\\newportalwebapi\\newportalwebapi\\model\\request\\newsrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\91979\\Desktop\\NewPortalWebapp\\NewPortalWebAPI\\NewPortalWebAPI\\Program.cs",
+              "RelativeDocumentMoniker": "..\\NewPortalWebAPI\\Program.cs",
+              "ToolTip": "C:\\Users\\91979\\Desktop\\NewPortalWebapp\\NewPortalWebAPI\\NewPortalWebAPI\\Program.cs",
+              "RelativeToolTip": "..\\NewPortalWebAPI\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-08T11:48:53.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NewsRequestDto.cs",
+              "DocumentMoniker": "C:\\Users\\91979\\Desktop\\NewPortalWebapp\\NewPortalWebAPI\\NewPortalWebAPI\\Model\\Request\\NewsRequestDto.cs",
+              "RelativeDocumentMoniker": "..\\NewPortalWebAPI\\Model\\Request\\NewsRequestDto.cs",
+              "ToolTip": "C:\\Users\\91979\\Desktop\\NewPortalWebapp\\NewPortalWebAPI\\NewPortalWebAPI\\Model\\Request\\NewsRequestDto.cs",
+              "RelativeToolTip": "..\\NewPortalWebAPI\\Model\\Request\\NewsRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-08T11:42:40.534Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NewsController.cs",
+              "DocumentMoniker": "C:\\Users\\91979\\Desktop\\NewPortalWebapp\\NewPortalWebAPI\\NewPortalWebAPI\\Controllers\\NewsController.cs",
+              "RelativeDocumentMoniker": "..\\NewPortalWebAPI\\Controllers\\NewsController.cs",
+              "ToolTip": "C:\\Users\\91979\\Desktop\\NewPortalWebapp\\NewPortalWebAPI\\NewPortalWebAPI\\Controllers\\NewsController.cs",
+              "RelativeToolTip": "..\\NewPortalWebAPI\\Controllers\\NewsController.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAIwCEAAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-08T11:42:21.048Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PaginationFilter.cs",
+              "DocumentMoniker": "C:\\Users\\91979\\Desktop\\NewPortalWebapp\\NewPortalWebAPI\\NewPortalWebAPI\\Model\\Request\\PaginationFilter.cs",
+              "RelativeDocumentMoniker": "..\\NewPortalWebAPI\\Model\\Request\\PaginationFilter.cs",
+              "ToolTip": "C:\\Users\\91979\\Desktop\\NewPortalWebapp\\NewPortalWebAPI\\NewPortalWebAPI\\Model\\Request\\PaginationFilter.cs",
+              "RelativeToolTip": "..\\NewPortalWebAPI\\Model\\Request\\PaginationFilter.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAABwAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-08T09:07:43.226Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NewsRepository.cs",
+              "DocumentMoniker": "C:\\Users\\91979\\Desktop\\NewPortalWebapp\\NewPortalWebAPI\\NewPortalWebAPI\\Service\\NewsRepository.cs",
+              "RelativeDocumentMoniker": "..\\NewPortalWebAPI\\Service\\NewsRepository.cs",
+              "ToolTip": "C:\\Users\\91979\\Desktop\\NewPortalWebapp\\NewPortalWebAPI\\NewPortalWebAPI\\Service\\NewsRepository.cs",
+              "RelativeToolTip": "..\\NewPortalWebAPI\\Service\\NewsRepository.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAD4v2EAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-08T04:44:30.646Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

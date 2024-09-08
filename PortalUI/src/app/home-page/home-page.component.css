@@ -1,0 +1,41 @@
+.card{
+   text-align: left;
+}
+
+.card-header {
+  margin: 0 0 0px;
+  background-image: linear-gradient(to right, #0d7dfd 5%, white 90%);
+}
+
+.delete {
+  float: right;
+  margin-right: 5px;
+}
+
+.edit {
+  float: right;
+  margin-left: 5px;
+}
+
+.card-heading {
+  font-size: 16px;
+  font-family: "Merriweather Sans",sans-serif;
+  height: initial ;
+  text-align: center;
+}
+
+i{
+  align-content: space-around;
+}
+
+input {
+  border-color: transparent;
+  margin:0px
+}
+
+.search {
+  border-color: rgb(30, 114, 197);
+  outline: auto;
+  margin-left: 0px;
+  border-radius: 3px;
+}

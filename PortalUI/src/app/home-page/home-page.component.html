@@ -1,0 +1,56 @@
+<div class="Container">
+  <div class="m-4 col-12 row m-0">
+
+  <form class="search d-flex float-start col-4 m-0">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchText"
+      [ngModelOptions]="{standalone: true}" (keyup)="onKeyup($event)">
+      <i class="fa-solid fa-magnifying-glass"
+      style="color: #385a98;"></i>
+  </form>
+
+    <!-- pagination -->
+    <nav aria-label="..." class="justify-content-center col-5 m-0">      
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [ngClass]="{ 'disabled': !paginationResponse?.hasPreviousPage }">
+          <a class="page-link" (click)="onPageChange(paginationResponse.pageNumber - 1)">
+            Previous</a>
+        </li>
+        <li *ngFor="let page of [].constructor(totalPages); let i = index" class="page-item"
+          [ngClass]="{ 'active': i+1 === paginationResponse.pageNumber }">
+          <a class="page-link" (click)="onPageChange(i+1)">{{i+1}}</a>
+        </li>
+        <li class="page-item" [ngClass]="{'disabled': !paginationResponse?.hasNextPage}">
+          <a class="page-link" (click)="onPageChange(paginationResponse.pageNumber + 1)">
+            Next</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="col-2 justify-content-end float-end m-0">
+      <a class="btn btn-outline-success bg-green border-start-0 border-bottom-0 border ms-n5 float-end" type="button"
+        [routerLink]="['/createnews']">
+        <i class="fa-solid fa-plus"></i>
+        Create News
+      </a>
+    </div>
+
+</div>
+
+    <app-modal-dialog>
+    </app-modal-dialog>
+
+  <!-- Page Content -->
+  <div class="card mb-2" *ngFor="let news of newsData">
+    <h6 class="card-header text-white bg-primary">
+      <label class="card-heading m-2">{{news.category.categoryName}}</label>
+      <button type="button" class="btn btn-secondary edit" (click)="onEdit(news)"><i
+          class="fa-solid fa-pen fa-sm"></i></button>
+      <button type="button" class="btn btn-danger delete" data-toggle="modal" data-target="#appModal" (click)="onDelete(news.id)"><i
+          class="fa-solid fa-circle-minus fa-sm"></i></button>
+    </h6>
+    <div class="card-body">
+      <h5 class="card-title">{{news.title}}</h5>
+      <p class="card-text">{{news.description}}</p>
+    </div>
+  </div>
+</div>

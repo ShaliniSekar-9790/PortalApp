@@ -1,0 +1,17 @@
+.header {
+    background-image: linear-gradient(to right, rgb(0, 72, 255), rgb(41, 148, 175));
+}
+
+h3 {
+    color: white;
+    align-items: center;
+}
+
+nav {
+    float: inline-end;
+}
+
+.title {
+    font-family: "Font Awesome";
+    font-size: larger;
+}
