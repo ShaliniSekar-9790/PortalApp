@@ -1,8 +1,0 @@
-{
-    "appService.zipIgnorePattern": [
-        "node_modules{,/**}",
-        ".vscode{,/**}"
-    ],
-    "appService.defaultWebAppToDeploy": "/subscriptions/2552dffe-63eb-4eb4-926e-52305055e8a4/resourceGroups/dev-rg1/providers/Microsoft.Web/sites/PortalApp",
-    "appService.deploySubpath": "PortalUI\\dist\\news-portal-web"
-}
