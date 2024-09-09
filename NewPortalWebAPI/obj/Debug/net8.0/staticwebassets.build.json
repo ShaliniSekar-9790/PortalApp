@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "XmF5yIn+4NvwFBC5EVLjKOrTWcVi5xjzNRUBxIFRVWA=",
+  "Source": "NewPortalWebAPI",
+  "BasePath": "_content/NewPortalWebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
