@@ -16,6 +16,7 @@ namespace NewPortalWebAPI.Model.Request
                 Description = requestDto.Description,
                 Category = requestDto.Category,
                 CreateDate = DateTime.Now,
+                UpdatedDate = DateTime.Now
             };
     }
 }

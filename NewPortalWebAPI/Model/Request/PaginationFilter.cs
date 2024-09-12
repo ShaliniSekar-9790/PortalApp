@@ -22,12 +22,5 @@ namespace NewPortalWebAPI.Model.Request
             this.PageSize = pageSize > 5 ? 5 : pageSize;
 			this.SearchTerm = searchTerm;
         }
-
-        public PaginationFilter(string searchTerm)
-        {
-            this.SearchTerm = searchTerm;
-            this.PageSize = 5;
-			this.PageNumber = 1;
-        }
     }
 }
