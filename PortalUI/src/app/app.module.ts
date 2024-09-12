@@ -15,6 +15,7 @@ import { AppFooterComponent } from './app-footer/app-footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SpinnerComponent } from './spinner/spinner.component'; // Import NgbModule
 import { httpInterceptorInterceptor } from './http-interceptor.interceptor';
+import { TimeagoPipe } from './pipes/timeago.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { httpInterceptorInterceptor } from './http-interceptor.interceptor';
     ModalDialogComponent,
     AppHeaderComponent,
     AppFooterComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    TimeagoPipe
   ],
   imports: [
     BrowserModule,

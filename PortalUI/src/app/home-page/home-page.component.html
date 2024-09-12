@@ -1,15 +1,55 @@
-<div class="Container">
-  <div class="m-4 col-12 row m-0">
-
+<div class="m-0">
+  <div class="page">
+  <div class="mt-4 mb-4 ms-1 col-12 row">
   <form class="search d-flex float-start col-4 m-0">
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchText"
-      [ngModelOptions]="{standalone: true}" (keyup)="onKeyup($event)">
-      <i class="fa-solid fa-magnifying-glass"
-      style="color: #385a98;"></i>
-  </form>
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchText"
+        [ngModelOptions]="{standalone: true}" (keyup)="onKeyup($event)">
+      <i class="fa-solid fa-magnifying-glass" style="color: #385a98;"></i>
+    </form>
+    <div class="col-6"></div>
+
+    <div class="col-2 justify-content-end float-end">
+      <a class="btn btn-outline-success bg-green border-start-0 border-bottom-0 border float-end" type="button"
+        [routerLink]="['/createnews']">
+        <i class="fa-solid fa-plus"></i>
+        Create News
+      </a>
+    </div>
+  </div>
+
+
+    <app-modal-dialog>
+    </app-modal-dialog>
+
+    <!-- Page Content -->
+  <ng-container  *ngIf="newsData?.length!>0; else notavailable">
+    <div class="card m-0 mb-2" *ngFor="let news of newsData">
+      <h6 class="card-header text-white bg-primary">
+        <label class="card-heading m-2">{{news.category.categoryName}}</label>
+        <label class="timeago card-heading">{{news.updatedDate | timeago}}
+          <span class="tooltiptext">{{news.updatedDate | date:"MMM dd, yyyy hh:mm a"}}</span></label>
+        <button type="button" class="btn btn-secondary edit" (click)="onEdit(news)"><i
+            class="fa-solid fa-pen fa-sm"></i></button>
+        <button type="button" class="btn btn-danger delete" data-toggle="modal" data-target="#appModal"
+          (click)="onDelete(news.id)"><i class="fa-solid fa-circle-minus fa-sm"></i></button>
+      </h6>
+      <div class="card-body">
+        <h5 class="card-title">
+          {{news.title}}
+        </h5>
+        <p class="card-text">{{news.description}}</p>
+      </div>
+    </div>
+ 
+</ng-container>
+</div>
+
+<ng-template #notavailable>
+<h4> No News Available!!!</h4>
+</ng-template>
 
     <!-- pagination -->
-    <nav aria-label="..." class="justify-content-center col-5 m-0">      
+    <nav aria-label="..." class="justify-content-center mt-2">
       <ul class="pagination justify-content-center">
         <li class="page-item" [ngClass]="{ 'disabled': !paginationResponse?.hasPreviousPage }">
           <a class="page-link" (click)="onPageChange(paginationResponse.pageNumber - 1)">
@@ -25,32 +65,4 @@
         </li>
       </ul>
     </nav>
-
-    <div class="col-2 justify-content-end float-end m-0">
-      <a class="btn btn-outline-success bg-green border-start-0 border-bottom-0 border ms-n5 float-end" type="button"
-        [routerLink]="['/createnews']">
-        <i class="fa-solid fa-plus"></i>
-        Create News
-      </a>
     </div>
-
-</div>
-
-    <app-modal-dialog>
-    </app-modal-dialog>
-
-  <!-- Page Content -->
-  <div class="card mb-2" *ngFor="let news of newsData">
-    <h6 class="card-header text-white bg-primary">
-      <label class="card-heading m-2">{{news.category.categoryName}}</label>
-      <button type="button" class="btn btn-secondary edit" (click)="onEdit(news)"><i
-          class="fa-solid fa-pen fa-sm"></i></button>
-      <button type="button" class="btn btn-danger delete" data-toggle="modal" data-target="#appModal" (click)="onDelete(news.id)"><i
-          class="fa-solid fa-circle-minus fa-sm"></i></button>
-    </h6>
-    <div class="card-body">
-      <h5 class="card-title">{{news.title}}</h5>
-      <p class="card-text">{{news.description}}</p>
-    </div>
-  </div>
-</div>

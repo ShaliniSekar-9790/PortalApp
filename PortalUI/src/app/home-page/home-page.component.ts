@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { NewsPortalService } from '../service/news-portal.service';
 import { Router } from '@angular/router';
 import { InewsInfo } from '../model/interfaces/InewsInfo';
@@ -9,7 +9,7 @@ import { ModalDismissReasons, NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootst
 import { ModalDialogComponent } from '../modal-dialog/modal-dialog.component';
 import { Subject } from 'rxjs/internal/Subject';
 import { debounceTime } from 'rxjs';
-import { ModalserviceService } from '../modalservice.service';
+import { ModalserviceService } from '../service/modalservice.service';
 
 @Component({
   selector: 'app-home-page',
@@ -25,7 +25,6 @@ export class HomePageComponent implements OnInit {
   totalPages: number = 0;
   modalDialogInfo : ModalInfo = new ModalInfo();
   toBeDeletedNews : number = -1;
-  @ViewChild('dialog') private content : any;
   confirmText: string = "";
   searchText: string = "";
   closeResult='';
@@ -34,8 +33,11 @@ export class HomePageComponent implements OnInit {
   alertMessageType = 'success';
   alertMessage = '';
   @ViewChild('selfClosingAlert', { static: false }) selfClosingAlert?: NgbAlert;
+  pageSize = 5;
+  currentPage = 1;
 
-  constructor(private newsPortalService: NewsPortalService, private router: Router, private modalService: ModalserviceService) {}
+  constructor(private newsPortalService: NewsPortalService, 
+    private router: Router, private modalService: ModalserviceService) {}
 
   ngOnInit(): void {
     this.alertSubject.subscribe((message) => (this.alertMessage = message));
@@ -44,7 +46,7 @@ export class HomePageComponent implements OnInit {
         this.selfClosingAlert.close();
       }
     });
-    this.loadItems();
+    this.loadItems(this.currentPage, this.pageSize);
   }
 
   loadItems(currentPage: number = 1, pageSize: number =5) {
@@ -52,6 +54,7 @@ export class HomePageComponent implements OnInit {
     this.newsPortalService.getNewsInfoByPagination(currentPage, pageSize).subscribe({
       next: (data: any) => {
         if(data.data != null )this.setLoadData(data.data);
+        console.log("Load Data by page");
       },
       error: (error: any) => {
         console.error('Error occurred:', error);
@@ -71,8 +74,11 @@ export class HomePageComponent implements OnInit {
   }
 
   onPageChange(page: number) {
-    if(this.paginationResponse.pageNumber != page)
-      this.loadItems(page)
+    if(this.paginationResponse.pageNumber != page) {
+      this.currentPage = page;
+        if(this.searchText?.length > 0) this.onSearch(this.searchText, page);   
+        else this.loadItems(page, this.pageSize);
+    }  
   }
 
   public showAlertMessage(message: string, alertType: string = "success") {
@@ -87,7 +93,7 @@ export class HomePageComponent implements OnInit {
           that.newsPortalService.deleteNews(toBeDeletedId).subscribe({
             next: async (response) => {
               that.showAlertMessage("Deleted succesfully.", "danger");
-              that.loadItems(1, 5);
+              that.loadItems(that.currentPage, that.pageSize);
             },
             error: (error) => {
               that.showAlertMessage(`failed to delete news ${error.detail}`);
@@ -98,19 +104,6 @@ export class HomePageComponent implements OnInit {
         })
   }
 
-  closeModal() {
-    this.content.close();
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
 
   deleteNews(event: string) {
     console.log("Inside Delete");
@@ -123,19 +116,21 @@ export class HomePageComponent implements OnInit {
       }
     })  }
 
-   
-
     onKeyup(event: KeyboardEvent) : void {
       if(this.searchText == null) this.searchText = "";
       console.log(this.searchText);
-      this.newsPortalService.getNewsInfoBySearch(this.searchText).subscribe({
+      this.onSearch(this.searchText, this.paginationResponse?.pageNumber);   
+    }
+
+    onSearch(searchText : string, page: number) : void {
+      this.newsPortalService.getNewsInfoBySearch(this.searchText ,page ,this.pageSize).subscribe({
         next: (data: any) => {
           this.setLoadData(data);
         },
         error: (error: any) => {
           console.error('Error occurred:', error);
         }
-      })    
+      })  
     }
 
     onEdit(newsData: any) : void {

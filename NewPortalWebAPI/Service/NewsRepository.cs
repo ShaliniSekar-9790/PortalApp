@@ -57,9 +57,8 @@ namespace NewPortalWebAPI.Service
             {
                 var newsInfo = await newsContext.NewsInfos
                                            .Include(n => n.Category)
-                                           .OrderByDescending(n => n.CreateDate)
-                                           .Skip
-                                           ((pageNumber - 1) * pageSize)
+                                           .OrderByDescending(n => n.UpdatedDate)
+                                           .Skip((pageNumber - 1) * pageSize)
                                            .Take(pageSize)
                                            .ToListAsync();
 
@@ -82,22 +81,20 @@ namespace NewPortalWebAPI.Service
             try
             {
                 var newsInfo = new List<NewsInfo> ();
-                logger.LogDebug("String:", searchTerm);
-
                 if (searchTerm != "" && searchTerm is not null)
                 {
                     newsInfo =  await newsContext.NewsInfos
-                                              .OrderByDescending(n => n.CreateDate)
-                                              .Where(n => n.Title.Contains(searchTerm) || n.Description.Contains(searchTerm))
+                                              .Include(n => n.Category)
+                                              .OrderByDescending(n => n.UpdatedDate)
+                                              .Where(n => n.Title.ToLower().Contains(searchTerm.ToLower()) || n.Description.ToLower().Contains(searchTerm.ToLower()))
                                               .Skip((pageNumber - 1) * pageSize)
                                               .Take(pageSize)
                                               .ToListAsync();
                 } else
                 {
-                    logger.LogDebug("String:", searchTerm);
-
                     newsInfo = await newsContext.NewsInfos
-                                             .OrderByDescending(n => n.CreateDate)
+                                             .Include(n => n.Category)
+                                             .OrderByDescending(n => n.UpdatedDate)
                                              .Skip((pageNumber - 1) * pageSize)
                                              .Take(pageSize)
                                              .ToListAsync();
@@ -156,10 +153,8 @@ namespace NewPortalWebAPI.Service
                     throw new InvalidOperationException($"News Info '{newsInfo.Id}' does not exist.");
                 newsInfo.CreateDate = updateNewsInfo.CreateDate;
                 newsInfo.UpdatedDate = DateTime.Now;
-                newsInfo.Category = updateNewsInfo.Category;
-
-                newsContext.Entry(updateNewsInfo).State = (Microsoft.EntityFrameworkCore.EntityState)System.Data.Entity.EntityState.Detached;
-                newsContext.NewsInfos.Update(newsInfo);
+                updateNewsInfo = newsInfo;
+                newsContext.Entry(updateNewsInfo).State = EntityState.Modified;
                 newsContext.SaveChanges();
 
                 logger.LogInformation("NewsRepository:EditNews:: Data updated in DB", newsInfo);

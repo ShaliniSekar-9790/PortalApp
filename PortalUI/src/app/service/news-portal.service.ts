@@ -29,9 +29,11 @@ export class NewsPortalService {
     return this.http.get<INewsPagedResponse[]>(`${this.apiUrl}/api/News/GetAllByPagination`,{params: params});
   }
 
-  getNewsInfoBySearch(searchTerm: String): Observable<INewsPagedResponse[]> {
+  getNewsInfoBySearch(searchTerm: String, currentPage:number,pageSize: number): Observable<INewsPagedResponse[]> {
     const params = new HttpParams()
       .set('SearchTerm', searchTerm.toString())
+      .set('PageNumber', currentPage)
+      .set('PageSize', pageSize);
     return this.http.get<INewsPagedResponse[]>(`${this.apiUrl}/api/News/GetAllBySearchTerm`,{params: params});
   }
 

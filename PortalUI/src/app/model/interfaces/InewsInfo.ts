@@ -5,5 +5,6 @@ export interface InewsInfo {
     title: string;
     description: string;
     createDate: string;
+    updatedDate: string;
     category: ICategory;
   }

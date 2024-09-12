@@ -2,6 +2,14 @@
    text-align: left;
 }
 
+.page {
+  height: 80vh;
+  width: 98vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-right: 20px;
+}
+
 .card-header {
   margin: 0 0 0px;
   background-image: linear-gradient(to right, #0d7dfd 5%, white 90%);
@@ -39,3 +47,48 @@ input {
   margin-left: 0px;
   border-radius: 3px;
 }
+
+.timeago {
+  font-family: "BBC Reith Sans", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: none;
+  text-decoration: none;
+  letter-spacing: -0.12px;
+  /* color: rgb(84, 86, 88); */
+  color: white;
+}
+
+.timeago .tooltiptext {
+  visibility: hidden;
+  width: 140;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 2px;
+  margin-left: 10px;
+  margin-top: -5px;
+  position: absolute;
+  z-index: 1;
+}
+
+.timeago .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.timeago:hover .tooltiptext  
+{ 
+   visibility: visible; 
+} 
+
+
+

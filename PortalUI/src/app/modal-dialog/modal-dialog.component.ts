@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { ModalInfo } from '../model/modalInfo';
-import { ModalserviceService } from '../modalservice.service';
+import { ModalserviceService } from '../service/modalservice.service';
 
 @Component({
   selector: 'app-modal-dialog',
