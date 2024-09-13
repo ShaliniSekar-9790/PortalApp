@@ -5,12 +5,12 @@ namespace NewsPortal.API.Repositories
 {
     public interface INewsRepository
     {
-        Task<IEnumerable<Category>>  GetCategories();
-        Task<NewsInfo> GetNewsById(int id);
-        Task<PagedResponse> GetNewsInfoByPagination(int pageNumber, int pageSize);
-        Task<PagedResponse> GetNewsInfoBySearchString(int pageSize,int pageNumber, string searchTerm);
+        IEnumerable<Category>  GetCategories();
+        NewsInfo GetNewsById(int id);
+        PagedResponse GetNewsInfoByPagination(int pageNumber, int pageSize);
+        PagedResponse GetNewsInfoBySearchString(int pageSize,int pageNumber, string searchTerm);
         void CreateNews(NewsInfo newsInfo);
-        Task UpdateNews(NewsInfo newsInfo);
+        void UpdateNews(NewsInfo newsInfo);
         void DeleteNewsById(int id);
     }
 }

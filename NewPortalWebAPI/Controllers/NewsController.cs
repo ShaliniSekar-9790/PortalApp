@@ -21,24 +21,24 @@ namespace NewPortalWebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllByPagination([FromQuery] PaginationFilter filter)
+        public IActionResult GetAllByPagination([FromQuery] PaginationFilter filter)
         {
-             var response = await newsRepository.GetNewsInfoByPagination(filter.PageNumber, filter.PageSize);
+             var response =  newsRepository.GetNewsInfoByPagination(filter.PageNumber, filter.PageSize);
              return Ok(new PortalApiResponse<PagedResponse>(MyConsts.SUCCESS, response));
 
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllBySearchTerm([FromQuery] PaginationFilter filter)
+        public IActionResult GetAllBySearchTerm([FromQuery] PaginationFilter filter)
         {
-            PagedResponse response = await newsRepository.GetNewsInfoBySearchString(filter.PageSize, filter.PageNumber, filter.SearchTerm);
+            PagedResponse response = newsRepository.GetNewsInfoBySearchString(filter.PageSize, filter.PageNumber, filter.SearchTerm);
             return Ok(response);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetNewsById(int id)
+        public  IActionResult GetNewsById(int id)
         {
-            var newsInfo = await newsRepository.GetNewsById(id);
+            var newsInfo =  newsRepository.GetNewsById(id);
 
             if (newsInfo is not null)
             {
@@ -51,7 +51,7 @@ namespace NewPortalWebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> createNews([FromBody] NewsRequestDto requestData)
+        public IActionResult createNews([FromBody] NewsRequestDto requestData)
         {
             NewsInfo newsInfo = requestData;
             newsRepository.CreateNews(newsInfo);
@@ -67,9 +67,9 @@ namespace NewPortalWebAPI.Controllers
 
         
         [HttpPut]
-        public async Task<IActionResult> UpdateNews([FromBody] NewsInfo requestData)
+        public IActionResult UpdateNews([FromBody] NewsInfo requestData)
         {
-            await newsRepository.UpdateNews(requestData);
+            newsRepository.UpdateNews(requestData);
             return Ok(new PortalApiResponse<string>(MyConsts.SUCCESS,""));
         }
     }

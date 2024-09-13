@@ -18,12 +18,12 @@ namespace NewPortalWebAPI.Service
         }
 
 
-        public async Task<IEnumerable<Category>> GetCategories()
+        public IEnumerable<Category> GetCategories()
         {
             IEnumerable<Category> categories = new List<Category>();
             try
             {
-                categories = await newsContext.Categories.AsNoTracking().ToListAsync();
+                categories =  newsContext.Categories.AsNoTracking().ToList();
                 logger.LogInformation("NewsRepository:GetCategories:: Data retrieved from DB");
 
             }
@@ -34,14 +34,14 @@ namespace NewPortalWebAPI.Service
             return categories;
         }
 
-        public async Task<NewsInfo> GetNewsById(int id)
+        public NewsInfo GetNewsById(int id)
         {
             NewsInfo newsInfo = new NewsInfo();
             try
             {
-                  newsInfo = await newsContext.NewsInfos.Include(n => n.Category).
+                  newsInfo = newsContext.NewsInfos.Include(n => n.Category).
                     AsNoTracking().
-                    SingleOrDefaultAsync(p => p.Id == id);
+                    SingleOrDefault(p => p.Id == id);
             }
             catch (Exception ex)
             {
@@ -50,19 +50,19 @@ namespace NewPortalWebAPI.Service
             return newsInfo;
         }
 
-        public async Task<PagedResponse> GetNewsInfoByPagination(int pageNumber, int pageSize)
+        public PagedResponse GetNewsInfoByPagination(int pageNumber, int pageSize)
         {
             PagedResponse pagedResponse = new PagedResponse();
             try
             {
-                var newsInfo = await newsContext.NewsInfos
+                var newsInfo = newsContext.NewsInfos
                                            .Include(n => n.Category)
                                            .OrderByDescending(n => n.UpdatedDate)
                                            .Skip((pageNumber - 1) * pageSize)
                                            .Take(pageSize)
-                                           .ToListAsync();
+                                           .ToList();
 
-                var totalRecords = await newsContext.NewsInfos.CountAsync();
+                var totalRecords = newsContext.NewsInfos.Count();
                 var totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
                 pagedResponse = new PagedResponse(newsInfo, pageNumber, totalRecords, totalPages);
                 logger.LogInformation("NewsRepository:GetNewsInfoByPagination:: Data retrieved from DB");
@@ -75,7 +75,7 @@ namespace NewPortalWebAPI.Service
             return pagedResponse;
         }
 
-        public async Task<PagedResponse> GetNewsInfoBySearchString(int pageSize, int pageNumber, string searchTerm)
+        public PagedResponse GetNewsInfoBySearchString(int pageSize, int pageNumber, string searchTerm)
         {
              PagedResponse pagedResponse = new PagedResponse();
             try
@@ -83,26 +83,26 @@ namespace NewPortalWebAPI.Service
                 var newsInfo = new List<NewsInfo> ();
                 if (searchTerm != "" && searchTerm is not null)
                 {
-                    newsInfo =  await newsContext.NewsInfos
+                    newsInfo =  newsContext.NewsInfos
                                               .Include(n => n.Category)
                                               .OrderByDescending(n => n.UpdatedDate)
                                               .Where(n => n.Title.ToLower().Contains(searchTerm.ToLower()) || n.Description.ToLower().Contains(searchTerm.ToLower()))
                                               .Skip((pageNumber - 1) * pageSize)
                                               .Take(pageSize)
-                                              .ToListAsync();
+                                              .ToList();
                 } else
                 {
-                    newsInfo = await newsContext.NewsInfos
+                    newsInfo = newsContext.NewsInfos
                                              .Include(n => n.Category)
                                              .OrderByDescending(n => n.UpdatedDate)
                                              .Skip((pageNumber - 1) * pageSize)
                                              .Take(pageSize)
-                                             .ToListAsync();
+                                             .ToList();
                 }
                 
 
 
-                var totalRecords = await newsContext.NewsInfos.CountAsync();
+                var totalRecords = newsContext.NewsInfos.Count();
                 var totalPages =  (int)Math.Ceiling(totalRecords / (double)pageSize);
                 pagedResponse = new PagedResponse(newsInfo, pageNumber, totalRecords, totalPages);
 
@@ -141,13 +141,13 @@ namespace NewPortalWebAPI.Service
             }
         }
 
-        public async Task UpdateNews(NewsInfo newsInfo)
+        public void UpdateNews(NewsInfo newsInfo)
         {
             NewsInfo updateNewsInfo;
             try
             {
 
-                updateNewsInfo = await GetNewsById(newsInfo.Id);
+                updateNewsInfo = GetNewsById(newsInfo.Id);
 
                 if (updateNewsInfo is null)
                     throw new InvalidOperationException($"News Info '{newsInfo.Id}' does not exist.");

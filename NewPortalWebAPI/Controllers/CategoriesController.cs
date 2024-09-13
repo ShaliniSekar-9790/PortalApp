@@ -18,9 +18,9 @@ namespace NewPortalWebAPI.Controllers
         }
 
         [HttpGet("/getAllCategories")]
-        public async Task<IActionResult> GetAll()
+        public IActionResult GetAll()
         {
-            var response = await newsRepository.GetCategories();
+            var response = newsRepository.GetCategories();
             return Ok(new PortalApiResponse<IEnumerable<Category>>(MyConsts.SUCCESS,response));
         }
     }
