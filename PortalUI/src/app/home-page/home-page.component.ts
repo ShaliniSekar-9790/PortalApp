@@ -134,6 +134,6 @@ export class HomePageComponent implements OnInit {
     }
 
     onEdit(newsData: any) : void {
-        this.router.navigate(['/updatenews'],  { queryParams: { id: newsData.id } });
+        this.router.navigate(['/updatenews'],  { queryParams: { id: newsData.news_Id } });
      }
 }

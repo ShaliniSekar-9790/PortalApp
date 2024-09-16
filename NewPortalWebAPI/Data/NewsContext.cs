@@ -6,7 +6,7 @@ namespace NewPortalWebAPI.Data;
     public NewsContext() { }
     public NewsContext(DbContextOptions<NewsContext> options) : base(options) {}
             public DbSet<NewsInfo> NewsInfos => Set<NewsInfo>();
-            public DbSet<Category> Categories => Set<Category>();           
+            public DbSet<Category> Category => Set<Category>();           
         
     }
 

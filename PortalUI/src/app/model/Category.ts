@@ -1,4 +1,4 @@
 export class Category {
-    categoryId: number = 0;
-    categoryName : string = '';
+    category_Id: number = 0;
+    category_Name : string = '';
 }

@@ -32,12 +32,6 @@ export class CreateEditNewsComponent implements OnInit{
       this.id = params['id'];
     });   
     this. loadCategory();
-    if(this.id) {
-      this.loadNews();
-      this.title = "Edit News";
-    } else {
-      this.newsData.category.categoryName = this.entercategory;
-    }
   }
 
   loadCategory() : void {
@@ -45,6 +39,12 @@ export class CreateEditNewsComponent implements OnInit{
       next: (response:any) => {
         this.categoriesData = response.data;
         console.log('Category received:', this.categoriesData);
+        if(this.id) {
+      this.loadNews();
+      this.title = "Edit News";
+    } else {
+      this.newsData.category.category_Name = this.entercategory;
+    }
       },
       error: (error: any) => {
         console.error('Error occurred:', error);
@@ -57,7 +57,7 @@ export class CreateEditNewsComponent implements OnInit{
       next: (response:any) => {
         if(response.data) {
           this.newsData = response.data;
-          this.newsData.category.categoryName = response.data.category.categoryName;
+          this.newsData.category.category_Name = response.data.category.categoryName;
         } 
         console.log('NewsData received:', this.newsData);
       },
@@ -68,7 +68,7 @@ export class CreateEditNewsComponent implements OnInit{
   }
 
   onOptionsSelected(value:string) {
-    this.newsData.category.categoryName = value;
+    this.newsData.category.category_Name = value;
     if(value != this.entercategory) {
       this.customcategory = "";
     } 
@@ -81,7 +81,9 @@ export class CreateEditNewsComponent implements OnInit{
    
     if (this.id == null) {
       if(this.customcategory.length > 0) {
-        this.newsData.category.categoryName = this.customcategory;
+        this.newsData.category.category_Name = this.customcategory;
+      } else {
+        this.newsData.category.category_Id = this.categoriesData?.find(c => c.category_Name ===  this.newsData.category.category_Name)?.category_Id!;
       }
      console.log(this.newsData);
       this.newsPortalService.createNews(this.newsData).subscribe({

@@ -25,19 +25,19 @@
   <ng-container  *ngIf="newsData?.length!>0; else notavailable">
     <div class="card m-0 mb-2" *ngFor="let news of newsData">
       <h6 class="card-header text-white bg-primary">
-        <label class="card-heading m-2">{{news.category.categoryName}}</label>
-        <label class="timeago card-heading">{{news.updatedDate | timeago}}
-          <span class="tooltiptext">{{news.updatedDate | date:"MMM dd, yyyy hh:mm a"}}</span></label>
+        <label class="card-heading m-2">{{news.category.category_Name}}</label>
+        <label class="timeago card-heading">{{news.updated_Date | timeago}}
+          <span class="tooltiptext">{{news.updated_Date | date:"MMM dd, yyyy hh:mm a"}}</span></label>
         <button type="button" class="btn btn-secondary edit" (click)="onEdit(news)"><i
-            class="fa-solid fa-pen fa-sm"></i></button>
+            class="fa-solid fa-pen fa-sm"></i></button> 
         <button type="button" class="btn btn-danger delete" data-toggle="modal" data-target="#appModal"
-          (click)="onDelete(news.id)"><i class="fa-solid fa-circle-minus fa-sm"></i></button>
+          (click)="onDelete(news.news_Id)"><i class="fa-solid fa-circle-minus fa-sm"></i></button>
       </h6>
       <div class="card-body">
         <h5 class="card-title">
           {{news.title}}
         </h5>
-        <p class="card-text">{{news.description}}</p>
+        <p class="card-text">{{news.news_Description}}</p>
       </div>
     </div>
  

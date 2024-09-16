@@ -1,9 +1,11 @@
-using Microsoft.Extensions.DependencyModel;
 using NewPortalWebAPI.Data;
 using NewPortalWebAPI.Service;
 using NewsPortal.API.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 
@@ -13,9 +15,8 @@ builder.Services.AddScoped<INewsRepository, NewsRepository>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSqlite<NewsContext>("Data Source=NewsPortal.db");
-
-builder.Services.AddScoped<NewsRepository>();
+builder.Services.AddDbContext<NewsContext>(options =>
+       options.UseSqlServer(builder.Configuration.GetConnectionString("Newsdb")));
 
 var app = builder.Build();
 

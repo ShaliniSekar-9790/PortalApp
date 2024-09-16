@@ -1,10 +1,10 @@
 import { ICategory } from "./Icategory";
 
 export interface InewsInfo {
-    id: number;
+    news_Id: number;
     title: string;
-    description: string;
-    createDate: string;
-    updatedDate: string;
+    news_Description: string;
+    create_Date: string;
+    updated_Date: string;
     category: ICategory;
   }
