@@ -36,22 +36,6 @@ namespace NewPortalWebAPI.Service
             return categories;
         }
 
-        public Category GetCategoryById(int id)
-        {
-            Category category = new Category();
-            try
-            {
-                category = newsContext.Category
-                  .AsNoTracking()
-                  .SingleOrDefault(p => p.Category_Id == id);
-            }
-            catch (Exception ex)
-            {
-                new ApplicationException("Exception while getting the news by id", ex);
-            }
-            return category;
-        }
-
         public NewsInfo GetNewsById(int id)
         {
             NewsInfo newsInfo = new NewsInfo();
